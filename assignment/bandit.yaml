@@ -1,0 +1,11 @@
+# Bandit configuration for the static security scan.
+# Only the application package is scanned; the test suite deliberately
+# contains abuse cases and fake tokens that would produce false positives.
+exclude_dirs:
+  - tests
+  - .venv
+  - perf
+skips:
+  # B101 (assert_used) is not relevant: the app code uses explicit error
+  # responses, and asserts only appear in the test suite, which is excluded.
+  - B101

@@ -1,0 +1,45 @@
+{
+  "baseline": "34 passed, 0 failed in 1.36s",
+  "restored": "34 passed, 0 failed in 1.19s",
+  "mutants": [
+    {
+      "id": "M1",
+      "risk": "R1 double charge",
+      "description": "idempotency lookup always misses - replays are charged again",
+      "caught": true,
+      "summary": "31 passed, 3 failed in 1.34s",
+      "failing_tests": [
+        "tests/test_idempotency.py::test_replay_with_same_key_charges_once",
+        "tests/test_idempotency.py::test_same_key_with_different_body_is_a_conflict",
+        "tests/test_idempotency.py::test_concurrent_duplicates_do_not_double_charge"
+      ]
+    },
+    {
+      "id": "M2",
+      "risk": "R2 incorrect totals",
+      "description": "sum check removed - splits no longer have to match the total",
+      "caught": true,
+      "summary": "31 passed, 3 failed in 1.48s",
+      "failing_tests": [
+        "tests/test_boundary_values.py::test_sum_mismatch_charges_nothing[60.00-39.99]",
+        "tests/test_boundary_values.py::test_sum_mismatch_charges_nothing[60.00-40.01]",
+        "tests/test_security.py::test_client_supplied_total_is_revalidated_server_side"
+      ]
+    },
+    {
+      "id": "M3",
+      "risk": "R3 partial charge",
+      "description": "compensation disabled - captured splits stay captured",
+      "caught": true,
+      "summary": "29 passed, 5 failed in 1.32s",
+      "failing_tests": [
+        "tests/test_compensation.py::test_declined_second_split_reverses_the_first",
+        "tests/test_compensation.py::test_timeout_on_second_split_triggers_compensation",
+        "tests/test_compensation.py::test_wallet_balance_is_restored_after_compensation",
+        "tests/test_compensation.py::test_failed_compensation_raises_an_alert_and_is_queued",
+        "tests/test_compensation.py::test_insufficient_wallet_balance_reverses_earlier_splits"
+      ]
+    }
+  ],
+  "detection_rate_percent": 100.0
+}

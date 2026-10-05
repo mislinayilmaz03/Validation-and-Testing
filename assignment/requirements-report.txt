@@ -1,0 +1,6 @@
+# Tooling for producing the submission document and its screenshots.
+# Deliberately separate from requirements.txt: CI only needs the test dependencies,
+# and a browser download has no business in the quality gate.
+#   pip install -r requirements-report.txt && playwright install chromium
+playwright==1.49.1
+markdown==3.7

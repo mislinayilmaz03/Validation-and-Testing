@@ -1,0 +1,10 @@
+{
+  "requests": 200,
+  "mean_ms": 0.6,
+  "p50_ms": 0.57,
+  "p95_ms": 0.79,
+  "p99_ms": 0.96,
+  "max_ms": 1.63,
+  "p95_budget_ms": 15.0,
+  "scope": "application layer, mocked providers, in-process client"
+}
